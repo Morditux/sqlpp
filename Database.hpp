@@ -29,7 +29,7 @@
 
 #ifndef DATABASE_HPP
 #define	DATABASE_HPP
-#include "sqlite/sqlite3.h"
+#include <sqlite3.h>
 #include <string>
 #include <memory>
 #include <mutex>
