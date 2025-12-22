@@ -33,6 +33,7 @@
 #include <cstring>
 #include <exception>
 #include <string>
+#include <cstdlib>
 
 namespace SQLPP
 {
@@ -70,13 +71,39 @@ namespace SQLPP
     using SQLiteExceptionStringPtr = std::shared_ptr<_SQLiteExceptionData>;
             
     
+    /**
+     * @brief Custom exception class for SQLite-related errors.
+     * 
+     * This class inherits from std::exception and provides access to SQLite 
+     * error codes and descriptive messages.
+     */
     class SQLiteException : public std::exception
     {
     public:
+        /**
+         * @brief Construct a new SQLite Exception object
+         * @param errCode SQLite error code
+         * @param msg Error message
+         */
         SQLiteException(int errCode, const std::string &msg);
+        /**
+         * @brief Copy constructor
+         * @param orig Original object
+         */
         SQLiteException(const SQLiteException& orig);
+        /**
+         * @brief Destroy the SQLite Exception object
+         */
         virtual ~SQLiteException();
+        /**
+         * @brief Get the error message
+         * @return const char* Error message
+         */
         const char * what() const throw() override;
+        /**
+         * @brief Get the SQLite error code
+         * @return int Error code
+         */
         int errorCode() const;
     private:
         SQLiteExceptionStringPtr d;

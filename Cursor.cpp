@@ -177,7 +177,7 @@ namespace SQLPP
 
     Blob Cursor::getAsBlob(const std::string &columnName)
     {
-        getAsBlob(d->stmt->columnNumber(columnName));
+        return getAsBlob(d->stmt->columnNumber(columnName));
     }
 
     Blob Cursor::getAsBlob(int column)

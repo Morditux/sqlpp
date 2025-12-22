@@ -29,7 +29,7 @@ SQLiteException.o: SQLiteException.cpp SQLiteException.h
 	$(CXX) -o $@ -c $< $(CXXFLAGS)
 
 sqlite3.o: sqlite/sqlite3.c sqlite/sqlite3.h
-	$(CC) -o $@ -c $< $(CFLAGS)
+	$(CC) -o $@ -c $< $(CFLAGS) -w
 
 sqlitepp.so: $(OBJS)
 	$(CC) -shared -o $@ $(OBJS)

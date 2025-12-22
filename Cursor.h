@@ -52,6 +52,11 @@ namespace SQLPP
         
     };
     
+    /**
+     * @brief A class to iterate over the results of an SQL query.
+     * 
+     * The Cursor provides methods to navigate through rows and retrieve column values.
+     */
     class Cursor
     {
         friend PreparedStatement;
@@ -61,35 +66,107 @@ namespace SQLPP
         Cursor(const Cursor& orig);
         virtual ~Cursor();
 
+        /**
+         * @brief Close the cursor
+         */
         void close();
 
+        /**
+         * @brief Check if the cursor is open
+         * @return true if open, false otherwise
+         */
         bool isOpen() const;
 
         /**
-         * Position the cursor on the next record if any, must be called before retrieving values
-         * @return true
+         * @brief Position the cursor on the next record if any
+         * @note Must be called before retrieving values
+         * @return bool true if a new record is available, false otherwise
          * @throw SQLiteException on error
          */
         bool next();
 
+        /**
+         * @brief Get column value as integer by name
+         * @param columnName Name of the column
+         * @return int32_t value
+         */
         int32_t getAsInt(const std::string &columnName);
+        /**
+         * @brief Get column value as integer by index
+         * @param column Index of the column (0-based)
+         * @return int32_t value
+         */
         int32_t getAsInt(int column);
 
+        /**
+         * @brief Get column value as 64-bit integer by name
+         * @param columnName Name of the column
+         * @return int64_t value
+         */
         int64_t getAsLong(const std::string &columnName);
+        /**
+         * @brief Get column value as 64-bit integer by index
+         * @param column Index of the column (0-based)
+         * @return int64_t value
+         */
         int64_t getAsLong(int column);
         
+        /**
+         * @brief Get column value as float by name
+         * @param columnName Name of the column
+         * @return float value
+         */
         float getAsFloat(const std::string &columnName);
+        /**
+         * @brief Get column value as float by index
+         * @param column Index of the column (0-based)
+         * @return float value
+         */
         float getAsFloat(int column);
         
+        /**
+         * @brief Get column value as double by name
+         * @param columnName Name of the column
+         * @return double value
+         */
         double getAsDouble(const std::string &columnName);
+        /**
+         * @brief Get column value as double by index
+         * @param column Index of the column (0-based)
+         * @return double value
+         */
         double getAsDouble(int column);
 
+        /**
+         * @brief Get column value as string by name
+         * @param columnName Name of the column
+         * @return std::string value
+         */
         std::string getAsString(const std::string &columnName);
+        /**
+         * @brief Get column value as string by index
+         * @param column Index of the column (0-based)
+         * @return std::string value
+         */
         std::string getAsString(int column);
 
+        /**
+         * @brief Get column value as Blob by name
+         * @param columnName Name of the column
+         * @return Blob value
+         */
         Blob getAsBlob(const std::string &columnName);
+        /**
+         * @brief Get column value as Blob by index
+         * @param column Index of the column (0-based)
+         * @return Blob value
+         */
         Blob getAsBlob(int column);
 
+        /**
+         * @brief Get the last error message from SQLite
+         * @return std::string Error message
+         */
         std::string errorMsg();
     private:
         void check();

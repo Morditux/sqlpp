@@ -29,6 +29,7 @@
 
 #include "Blob.h"
 #include <cstring>
+#include <cstdlib>
 
 using namespace SQLPP;
 using locker = std::lock_guard<std::recursive_mutex>;

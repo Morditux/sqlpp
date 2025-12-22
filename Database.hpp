@@ -48,60 +48,68 @@ namespace SQLPP
         std::recursive_mutex mutex;
     };
 
+    /**
+     * @brief Main class for interacting with an SQLite database.
+     * 
+     * This class provides methods to open/close databases, execute raw SQL,
+     * and manage transactions.
+     */
     class Database
     {
     public:
         friend PreparedStatement;
         /**
-         * 
+         * @brief Construct a new Database object
          */
         Database();
 
         /**
-         * 
-         * @param orig
+         * @brief Deleted copy constructor
          */
         Database(const Database& orig) = delete;
+        /**
+         * @brief Destroy the Database object
+         */
         virtual ~Database();
 
         /**
-         * Open database. Create a new database if the database does not exists
+         * @brief Open database. Create a new database file if it does not exist.
          * @param dbName The database file name
          * @throw SQLiteException on error
          */
         void open(const std::string & dbName);
         /**
-         * 
+         * @brief Close the database connection
          */
         void close();
         /**
-         * 
-         * @return 
+         * @brief Get the last error message from SQLite
+         * @return std::string Error message
          */
         std::string errorMsg();
 
         /**
-         * 
-         * @param sql
-         * @return 
+         * @brief Prepare an SQL statement
+         * @param sql The SQL query string
+         * @return PreparedStatement The prepared statement object
          */
         PreparedStatement prepareStatement(const std::string &sql);
 
         /**
-         * 
-         * @param sql
+         * @brief Execute a raw SQL statement
+         * @param sql The SQL query string
          */
         void exec(std::string sql);
         /**
-         * 
+         * @brief Begin a transaction
          */
         void begin();
         /**
-         * 
+         * @brief Commit the current transaction
          */
         void commit();
         /**
-         * 
+         * @brief Rollback the current transaction
          */
         void rollback();
 

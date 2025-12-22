@@ -35,6 +35,7 @@
 #include <memory>
 #include <stdint.h>
 #include <mutex>
+#include <cstdlib>
 
 namespace SQLPP
 {
@@ -55,15 +56,33 @@ namespace SQLPP
         char * data;
     };
 
+    /**
+     * @brief A class representing a binary large object (BLOB) in SQLite.
+     * 
+     * This class manages reference-counted binary data and ensures proper memory management.
+     */
     class Blob
     {
     public:
+        /**
+         * @brief Construct a new Blob object
+         * @param size The size of the data in bytes
+         * @param data The binary data to store
+         */
         Blob(int32_t size, const char * data);
         
         virtual ~Blob();
         
+        /**
+         * @brief Get the size of the blob data
+         * @return int32_t The size in bytes
+         */
         int32_t size() const;
         
+        /**
+         * @brief Get the pointer to the blob data
+         * @return const char* Pointer to the data
+         */
         const char * data() const;
         
     private:

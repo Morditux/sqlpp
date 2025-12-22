@@ -68,127 +68,133 @@ namespace SQLPP
         Database * db;
     };
 
+    /**
+     * @brief A class representing a prepared SQL statement.
+     * 
+     * PreparedStatement allows for efficient execution of SQL queries with parameter binding,
+     * protecting against SQL injection and improving performance for repeated queries.
+     */
     class PreparedStatement
     {
         friend Database;
         friend Cursor;
     public:
         /**
-         * 
-         * @param db
+         * @brief Construct a new Prepared Statement object
+         * @param db Pointer to the Database object
          */
         PreparedStatement(Database * db);
         /**
-         * 
+         * @brief Destroy the Prepared Statement object
          */
         virtual ~PreparedStatement();
 
         /**
-         * Create a new prepared statement
-         * @param sql The SQL String
+         * @brief Prepare a new SQL statement
+         * @param sql The SQL query string
          * @throw SQLiteException on error
          */
         void prepare(const std::string &sql);
         /**
-         * 
+         * @brief Execute an update statement (INSERT, UPDATE, DELETE)
          */
         void executeUpdate();
         /**
-         * 
-         * @return 
+         * @brief Execute a query statement (SELECT)
+         * @return Cursor object to iterate through results
          */
         Cursor execute();
         /**
-         * 
-         * @return 
+         * @brief Get the last error message from SQLite
+         * @return std::string Error message
          */
         std::string errorMsg();
         /**
-         * 
-         * @return 
+         * @brief Check if the statement is valid and prepared
+         * @return true if valid, false otherwise
          */
         bool isValid() const;
 
         /**
-         * Close the statement and free memory
+         * @brief Close the statement and free resources
          */
         void close();
         /**
-         * 
-         * @param name
-         * @return 
+         * @brief Get the index of a column by its name
+         * @param name Name of the column
+         * @return int Index of the column
          */
         int columnNumber(const std::string &name) const;
         /**
-         * 
-         * @param paramName
-         * @param value
+         * @brief Bind an integer value to a named parameter
+         * @param paramName Name of the parameter (e.g., ":id")
+         * @param value Integer value to bind
          */
         void setInt(const std::string &paramName, int32_t value);
         /**
-         * 
-         * @param column
-         * @param value
+         * @brief Bind an integer value to a parameter by index
+         * @param column Index of the parameter (1-based)
+         * @param value Integer value to bind
          */
         void setInt(int column, int32_t value);
         /**
-         * 
-         * @param paramName
-         * @param value
+         * @brief Bind a long value to a named parameter
+         * @param paramName Name of the parameter
+         * @param value Long value to bind
          */
         void setLong(const std::string &paramName, int64_t value);
         /**
-         * 
-         * @param column
-         * @param value
+         * @brief Bind a long value to a parameter by index
+         * @param column Index of the parameter (1-based)
+         * @param value Long value to bind
          */
         void setLong(int column, int64_t value);
         /**
-         * 
-         * @param paramName
-         * @param value
+         * @brief Bind a float value to a named parameter
+         * @param paramName Name of the parameter
+         * @param value Float value to bind
          */
         void setFloat(const std::string &paramName, float value);
         /**
-         * 
-         * @param column
-         * @param value
+         * @brief Bind a float value to a parameter by index
+         * @param column Index of the parameter (1-based)
+         * @param value Float value to bind
          */
         void setFloat(int column, float value);
         /**
-         * 
-         * @param paramName
-         * @param value
+         * @brief Bind a double value to a named parameter
+         * @param paramName Name of the parameter
+         * @param value Double value to bind
          */
         void setDouble(const std::string &paramName, double value);
         /**
-         * 
-         * @param column
-         * @param value
+         * @brief Bind a double value to a parameter by index
+         * @param column Index of the parameter (1-based)
+         * @param value Double value to bind
          */
         void setDouble(int column, double value);
         /**
-         * 
-         * @param paramName
-         * @param value
+         * @brief Bind a string value to a named parameter
+         * @param paramName Name of the parameter
+         * @param value String value to bind
          */
         void setString(const std::string &paramName, const std::string &value);
         /**
-         * 
-         * @param column
-         * @param value
+         * @brief Bind a string value to a parameter by index
+         * @param column Index of the parameter (1-based)
+         * @param value String value to bind
          */
         void setString(int column, const std::string &value);
         /**
-         * 
-         * @param paramName
-         * @param value
+         * @brief Bind a Blob value to a named parameter
+         * @param paramName Name of the parameter
+         * @param value Blob value to bind
          */
         void setBlob(const std::string &paramName, const Blob &value);
         /**
-         * 
-         * @param column
-         * @param value
+         * @brief Bind a Blob value to a parameter by index
+         * @param column Index of the parameter (1-based)
+         * @param value Blob value to bind
          */
         void setBlob(int column, const Blob &value);
 

@@ -112,6 +112,7 @@ namespace SQLPP
             int result = sqlite3_step(d->stmt);
             return result;
         }
+        return SQLITE_ERROR;
     }
 
     std::string PreparedStatement::errorMsg()
