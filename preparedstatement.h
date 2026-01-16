@@ -29,8 +29,8 @@
 
 #ifndef PREPAREDSTATEMENT_H
 #define PREPAREDSTATEMENT_H
-#include "Blob.h"
-#include "Database.hpp"
+#include "blob.h"
+#include "database.hpp"
 #include <memory>
 #include <mutex>
 #include <sqlite3.h>

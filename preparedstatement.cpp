@@ -28,9 +28,9 @@
  * Created on January 4, 2015, 9:06 AM
  */
 
-#include "PreparedStatement.h"
-#include "SQLiteException.h"
-#include "Cursor.h"
+#include "preparedstatement.h"
+#include "sqliteexception.h"
+#include "cursor.h"
 
 
 namespace SQLPP

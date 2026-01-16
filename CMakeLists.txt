@@ -22,11 +22,11 @@ endif()
 
 # Main library
 set(LIB_SRCS
-    Blob.cpp
-    Cursor.cpp
-    Database.cpp
-    PreparedStatement.cpp
-    SQLiteException.cpp
+    blob.cpp
+    cursor.cpp
+    database.cpp
+    preparedstatement.cpp
+    sqliteexception.cpp
 )
 
 add_library(sqlitepp SHARED ${LIB_SRCS})

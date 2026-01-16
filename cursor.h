@@ -29,10 +29,10 @@
 
 #ifndef CURSOR_H
 #define	CURSOR_H
-#include "PreparedStatement.h"
+#include "preparedstatement.h"
 #include <stdint.h>
-#include "Blob.h"
-#include "SQLiteException.h"
+#include "blob.h"
+#include "sqliteexception.h"
 #include <memory>
 #include <mutex>
 

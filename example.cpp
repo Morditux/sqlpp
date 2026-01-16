@@ -29,10 +29,10 @@
 
 #include <cstdlib>
 #include <iostream>
-#include "Database.hpp"
-#include "PreparedStatement.h"
-#include "SQLiteException.h"
-#include "Cursor.h"
+#include "database.hpp"
+#include "preparedstatement.h"
+#include "sqliteexception.h"
+#include "cursor.h"
 
 using namespace std;
 

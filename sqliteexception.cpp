@@ -20,42 +20,39 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
- * File:   Blob.cpp
+ *
+ * File:   SQLiteException.cpp
  * Author: Morditux
  * 
- * Created on January 6, 2015, 8:16 PM
+ * Created on January 6, 2015, 9:21 PM
  */
 
-#include "Blob.h"
-#include <cstring>
-#include <cstdlib>
+#include <string>
+
+#include "sqliteexception.h"
 
 using namespace SQLPP;
-using locker = std::lock_guard<std::recursive_mutex>;
 
-Blob::Blob(int32_t size, const char * data) : d(new _BlobData)
+SQLiteException::SQLiteException(int errCode, const std::string &msg) : d(new _SQLiteExceptionData(msg))
 {
-    
-    d->size = size;
-    d->data = static_cast<char *>(::malloc(size));
-    ::memcpy(d->data, data, size);
+    errCode = errCode;
 }
 
-Blob::~Blob()
+SQLiteException::SQLiteException(const SQLiteException& orig)
+{
+    d = orig.d;
+}
+
+SQLiteException::~SQLiteException()
 {
 }
 
-
-int32_t Blob::size() const 
+const char * SQLiteException::what() const throw() 
 {
-    
-    return d->size;
+    return d->string;
 }
 
-const char * Blob::data() const 
+int SQLiteException::errorCode() const 
 {
-    
-    return d->data;
+    return d->errCode;
 }
-

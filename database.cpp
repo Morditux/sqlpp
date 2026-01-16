@@ -27,9 +27,9 @@
  * Created on January 3, 2015, 9:04 PM
  */
 
-#include "Database.hpp"
-#include "PreparedStatement.h"
-#include "SQLiteException.h"
+#include "database.hpp"
+#include "preparedstatement.h"
+#include "sqliteexception.h"
 #include <sqlite3.h>
 
 namespace SQLPP {

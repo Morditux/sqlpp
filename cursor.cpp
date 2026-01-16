@@ -27,7 +27,7 @@
  * Created on January 4, 2015, 1:18 PM
  */
 
-#include "Cursor.h"
+#include "cursor.h"
 namespace SQLPP
 {
 
